@@ -3,6 +3,8 @@ package com.chs.filterdemo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,20 +54,20 @@ public class FilterFragmentTwo extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 departmentName = list[position];
-//                showNext();
-                getActivity().getSupportFragmentManager().popBackStackImmediate();
+                showNext();
+//                getActivity().getSupportFragmentManager().popBackStackImmediate();
             }
         });
     }
-//    private void showNext() {
-//        Fragment fragment = new FilterFragment();
-//        Bundle bundle = new Bundle();
-//        bundle.putString("departmentName",departmentName);
-//        fragment.setArguments(bundle);
-//        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//        fragmentTransaction.setCustomAnimations(R.anim.left_in, R.anim.right_out, R.anim.right_in, R.anim.left_out);
-//        fragmentTransaction.replace(R.id.drawer_content, fragment);
-//        fragmentTransaction.commitAllowingStateLoss();
-//    }
+    private void showNext() {
+        Fragment fragment = new FilterFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("departmentName",departmentName);
+        fragment.setArguments(bundle);
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.left_in, R.anim.right_out, R.anim.right_in, R.anim.left_out);
+        fragmentTransaction.replace(R.id.drawer_content, fragment);
+        fragmentTransaction.commitAllowingStateLoss();
+    }
 }
